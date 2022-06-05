@@ -12,7 +12,6 @@ const props = withDefaults(defineProps<Props>(), {
     title: "",
     mediaType: "",
 });
-console.log("url", props.url);
 </script>
 
 <template>
@@ -30,6 +29,11 @@ console.log("url", props.url);
             :src="url"
         >
         </iframe>
+        <span v-else>
+            <p>
+                <strong>No Image or Video available for this date</strong>
+            </p>
+        </span>
     </div>
 </template>
 

@@ -13,6 +13,12 @@ export const getTargetImage = async (date: Date) => {
     let formatedDate =
         date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 
-    const data = await callAppodApi(formatedDate);
-    return data;
+    try {
+        const data = await callAppodApi(formatedDate);
+        return data;
+    } catch (error) {
+        let message = "Unknown Error";
+        if (error instanceof Error) message = error.message;
+        throw new Error(message);
+    }
 };
