@@ -34,10 +34,12 @@ const props = withDefaults(defineProps<Props>(), {
     padding: 0 1rem 0 1rem;
     background-color: var(--light-background);
     margin-right: 1rem;
-    // height: fit-content;
 
     .description {
         text-align: left;
+    }
+    @media screen and (max-width: 900px) {
+        margin-right: 0rem;
     }
 }
 </style>

@@ -32,8 +32,9 @@ const handleNext = () => {
 </script>
 
 <template>
-    <div id="appod-container">
+    <div id="apod-container">
         <ApodDescription
+            class="description"
             :title="imageData?.title"
             :description="imageData?.explanation"
         />
@@ -45,6 +46,7 @@ const handleNext = () => {
             :error="imageError"
         />
         <ApodDateSelect
+            class="date-select"
             :targetDate="targetDate"
             @update:targetDate="(newDate) => (targetDate = new Date(newDate))"
         />
@@ -52,15 +54,20 @@ const handleNext = () => {
 </template>
 
 <style lang="scss">
-#appod-container {
+#apod-container {
     display: grid;
     justify-content: center;
-    // grid-template-columns: 20% 60% 20%;
     grid-template-columns: 30% 50% 20%;
     height: auto;
 
+    .description {
+        grid-column: 1 / 2;
+        grid-row: 1/2;
+    }
+
     .image-element {
         grid-column: 2/3;
+        grid-row: 1/2;
         max-height: 90vh;
         background-color: var(--medium-background);
         border-radius: 1rem;
@@ -68,6 +75,30 @@ const handleNext = () => {
         align-items: center;
         display: flex;
         padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    }
+    .date-select {
+        grid-column: 3/4;
+        grid-row: 1/2;
+    }
+}
+@media screen and (max-width: 900px) {
+    #apod-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .date-select {
+            order: 1;
+            height: auto;
+        }
+        .image-element {
+            order: 2;
+            margin-bottom: 1rem;
+        }
+        .description {
+            order: 3;
+        }
     }
 }
 </style>
