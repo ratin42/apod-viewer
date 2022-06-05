@@ -15,7 +15,6 @@ let imageError: Ref<boolean> = ref(false);
 watchEffect(async () => {
     try {
         imageData.value = await getTargetImage(targetDate.value);
-        console.log("imageData", imageData.value);
     } catch (error) {
         imageData.value = null;
         imageError.value = true;
@@ -91,6 +90,7 @@ const handleNext = () => {
         .date-select {
             order: 1;
             height: auto;
+            margin-bottom: 1rem;
         }
         .image-element {
             order: 2;

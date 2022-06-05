@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { formatDate } from "@/composables/utils";
 import ApodButton from "@/components/ApodButton.vue";
 
@@ -18,9 +19,15 @@ const handleNext = () => {
     props.targetDate.setDate(props.targetDate.getDate() + 1);
     emits("update:targetDate", props.targetDate);
 };
-const todayDate = formatDate(new Date());
-const formatedDate = formatDate(props.targetDate);
-console.log("formatedDate", formatedDate);
+const setDate = (date: any) => {
+    let newDate = new Date(date.target.value);
+    emits("update:targetDate", newDate);
+};
+
+const todayDate: string = formatDate(new Date());
+let formatedDate = computed(() => {
+    return formatDate(props.targetDate);
+});
 </script>
 
 <template>
@@ -28,14 +35,12 @@ console.log("formatedDate", formatedDate);
         <ApodButton @click="handlePrevious">
             <div class="button-content">{{ "<" }}</div>
         </ApodButton>
-        <!-- <p style="color: white">{{ props.targetDate.toDateString() }}</p> -->
         <input
             class="date-input"
             type="date"
-            id="start"
-            name="trip-start"
-            value="2019-11-01"
             :max="todayDate"
+            :value="formatedDate"
+            @input="(newDate: Event) => setDate(newDate)"
         />
 
         <ApodButton @click="handleNext">
@@ -50,7 +55,6 @@ console.log("formatedDate", formatedDate);
     grid-template-columns: auto 50% auto;
     width: 100%;
     height: 2vh;
-    // grid-gap: 1rem;
     justify-content: center;
     align-items: center;
 
@@ -62,6 +66,9 @@ console.log("formatedDate", formatedDate);
         font-size: 1.5rem;
         color: white;
         font-weight: bold;
+    }
+    input {
+        color-scheme: dark;
     }
     .date-input {
         width: 90%;
