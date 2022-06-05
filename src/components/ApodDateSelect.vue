@@ -72,7 +72,6 @@ let formatedDate = computed(() => {
     }
     .date-input {
         width: 90%;
-        height: 100%;
         background-color: transparent;
         border: none;
         color: white;
@@ -80,6 +79,7 @@ let formatedDate = computed(() => {
         font-weight: bold;
         text-align: center;
         justify-self: center;
+        justify-content: center;
     }
 }
 </style>
