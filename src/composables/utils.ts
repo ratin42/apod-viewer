@@ -1,3 +1,4 @@
+// take a Date Object return a string in the format YYYY-MM-DD
 export const formatDate = (date: Date) => {
     return (
         date.getFullYear() +

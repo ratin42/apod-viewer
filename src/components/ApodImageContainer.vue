@@ -2,12 +2,10 @@
 // Define Props
 interface Props {
     url: string;
-    title: string;
     mediaType: string;
 }
 const props = withDefaults(defineProps<Props>(), {
     url: "",
-    title: "",
     mediaType: "",
 });
 </script>
@@ -24,7 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
             v-else-if="props.url && props.mediaType == 'video'"
             class="video-container"
             allow="fullscreen;"
-            :src="url"
+            :src="props.url"
         >
         </iframe>
         <span v-else>

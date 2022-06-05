@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
             <h1>{{ props.title }}</h1>
             <p class="description">{{ props.description }}</p>
         </span>
-        <span v-else="error">
+        <span v-else>
             <p>
                 <strong>No Description available for this date</strong>
             </p>

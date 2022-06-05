@@ -42,7 +42,6 @@ let formatedDate = computed(() => {
             :value="formatedDate"
             @input="(newDate: Event) => setDate(newDate)"
         />
-
         <ApodButton @click="handleNext">
             <div class="button-content">{{ ">" }}</div>
         </ApodButton>

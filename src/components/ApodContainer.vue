@@ -5,10 +5,8 @@ import ApodImageContainer from "@/components/ApodImageContainer.vue";
 import ApodDescription from "@/components/ApodDescription.vue";
 import ApodDateSelect from "@/components/ApodDateSelect.vue";
 
-let todayDate: Date = new Date();
-let targetDate: Ref<Date> = ref(todayDate);
+let targetDate: Ref<Date> = ref(new Date());
 let imageData: Ref<any> = ref(null);
-let imageError: Ref<boolean> = ref(false);
 
 // Call APOD Api with targetDate formated as YYYY-MM-DD
 // watcher will be called when targetDate changes
@@ -17,17 +15,8 @@ watchEffect(async () => {
         imageData.value = await getTargetImage(targetDate.value);
     } catch (error) {
         imageData.value = null;
-        imageError.value = true;
     }
 });
-const handlePrevious = () => {
-    targetDate.value.setDate(targetDate.value.getDate() - 1);
-    targetDate.value = new Date(targetDate.value);
-};
-const handleNext = () => {
-    targetDate.value.setDate(targetDate.value.getDate() + 1);
-    targetDate.value = new Date(targetDate.value);
-};
 </script>
 
 <template>
@@ -40,9 +29,7 @@ const handleNext = () => {
         <ApodImageContainer
             class="image-element"
             :url="imageData?.url"
-            :title="imageData?.title"
             :mediaType="imageData?.media_type"
-            :error="imageError"
         />
         <ApodDateSelect
             class="date-select"
