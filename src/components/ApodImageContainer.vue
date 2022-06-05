@@ -5,32 +5,51 @@ import { defineProps } from "vue";
 interface Props {
     url: string;
     title: string;
+    mediaType: string;
 }
 const props = withDefaults(defineProps<Props>(), {
     url: "",
     title: "",
+    mediaType: "",
 });
+console.log("url", props.url);
 </script>
 
 <template>
     <div id="image-container">
-        <img class="space-picture" v-if="props.url" :src="props.url" alt="" />
+        <img
+            v-if="props.url && props.mediaType === 'image'"
+            class="space-picture"
+            :src="props.url"
+            alt=""
+        />
+        <iframe
+            v-else-if="props.url && props.mediaType == 'video'"
+            class="video-container"
+            allow="fullscreen;"
+            :src="url"
+        >
+        </iframe>
     </div>
 </template>
 
 <style lang="scss">
 #image-container {
-    // background-color: black;
-    // border-radius: 1rem;
+    .video-container {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        min-height: 90vh;
+        border-radius: 0.5rem;
+        border-style: none;
+    }
     .space-picture {
         width: auto;
         height: auto;
         max-width: 100%;
         max-height: 100%;
-        // object-fit: scale-down;
-        // background-size: scale-down;
-        // background-color: black;
-        border-radius: 1rem;
+        border-radius: 0.5rem;
     }
 }
 </style>

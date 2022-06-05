@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps, defineEmits, ref, Ref } from "vue";
 import ApodButton from "@/components/ApodButton.vue";
 
 interface Props {
@@ -22,12 +21,9 @@ const handleNext = () => {
 
 <template>
     <div id="apod-date-select">
-        <ApodButton @click="handlePrevious"
-            ><img
-                class="arrow"
-                src="@/assets/triangle-left.svg"
-                alt="triangle-left"
-        /></ApodButton>
+        <ApodButton @click="handlePrevious">
+            <div class="button-content">{{ "<" }}</div>
+        </ApodButton>
         <p style="color: white">{{ props.targetDate.toDateString() }}</p>
         <!-- <input
                 type="date"
@@ -38,7 +34,9 @@ const handleNext = () => {
                 :max="targetDate.toDateString()"
             /> -->
 
-        <ApodButton @click="handleNext">suiv</ApodButton>
+        <ApodButton @click="handleNext">
+            <div class="button-content">{{ ">" }}</div>
+        </ApodButton>
     </div>
 </template>
 
@@ -55,6 +53,11 @@ const handleNext = () => {
     .arrow {
         width: 2rem;
         height: 2rem;
+    }
+    .button-content {
+        font-size: 1.5rem;
+        color: white;
+        font-weight: bold;
     }
 }
 </style>

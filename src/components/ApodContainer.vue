@@ -35,6 +35,7 @@ const handleNext = () => {
             class="image-element"
             :url="imageData?.url"
             :title="imageData?.title"
+            :mediaType="imageData?.media_type"
         />
         <ApodDateSelect
             :targetDate="targetDate"
@@ -47,12 +48,19 @@ const handleNext = () => {
 #appod-container {
     display: grid;
     justify-content: center;
-    grid-template-columns: 20vw 60vw 20vw;
-    height: 100vh;
+    // grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 30% 50% 20%;
+    height: auto;
 
     .image-element {
         grid-column: 2/3;
-        height: 90vh;
+        max-height: 90vh;
+        background-color: var(--medium-background);
+        border-radius: 1rem;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        padding: 0.5rem 0.5rem 0.5rem 0.5rem;
     }
 }
 </style>

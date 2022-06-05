@@ -13,7 +13,6 @@ export const getTargetImage = async (date: Date) => {
     let formatedDate =
         date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 
-    console.log("getTargetImage:", formatedDate);
     const data = await callAppodApi(formatedDate);
     return data;
 };
